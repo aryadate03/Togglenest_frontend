@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:5000/api';  // ✅ CHANGE THIS LINE
+export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 export const API_ENDPOINTS = {
     AUTH: {
@@ -24,4 +24,5 @@ export const TASK_STATUS = {
 export const USER_ROLES = {
     ADMIN: 'admin',
     MEMBER: 'member'
+
 };
