@@ -1,5 +1,5 @@
 
-export const API_BASE_URL = 'https://togglenest-backend-1-6utk.onrender.com/api';
+export const API_BASE_URL = 'https://togglenest-backend.vercel.app/api';
 
 export const API_ENDPOINTS = {
     AUTH: {
@@ -27,5 +27,6 @@ export const USER_ROLES = {
     MEMBER: 'member'
 
 };
+
 
 
