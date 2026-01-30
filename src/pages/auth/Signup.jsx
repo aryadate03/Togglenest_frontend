@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // ✅ Added useEffect
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../../services/authService';
 import '../../styles/Auth.css';
@@ -14,6 +14,8 @@ const Signup = () => {
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -53,15 +55,19 @@ const Signup = () => {
         role: formData.role
       };
 
+      console.log('📤 Submitting registration:', userData.email);
+
       // Real API Call to Backend
-      await register(userData);
+      const response = await register(userData);
+      
+      console.log('✅ Registration successful:', response);
 
       // Success
       alert('✅ Account created successfully! Please login now.');
       navigate('/login');
     } catch (err) {
       // Error handling
-      console.error('Signup error:', err);
+      console.error('❌ Signup error:', err);
 
       // User-friendly error messages
       if (err.message) {
@@ -154,22 +160,12 @@ const Signup = () => {
           </div>
 
           <button 
-  type="submit" 
-  className="btn-primary" 
-  disabled={loading}
-  style={{
-    width: '100%',
-    padding: '12px',
-    fontSize: '16px',
-    fontWeight: '600',
-    border: 'none',
-    borderRadius: '8px',
-    cursor: loading ? 'not-allowed' : 'pointer',
-    opacity: loading ? 0.7 : 1
-  }}
->
-  {loading ? 'Creating Account...' : 'Sign Up'}
-</button>
+            type="submit" 
+            className="btn-primary" 
+            disabled={loading}
+          >
+            {loading ? 'Creating Account...' : 'Sign Up'}
+          </button>
         </form>
 
         <div className="auth-footer">
