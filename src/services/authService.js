@@ -1,6 +1,5 @@
 // src/services/authService.js
 
-// ✅ BULLETPROOF: Direct assignment, no complex expressions
 const API_BASE_URL = 'https://togglenestbackend.vercel.app/api';
 const API_URL = `${API_BASE_URL}/auth`;
 
