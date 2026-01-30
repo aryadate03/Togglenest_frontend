@@ -1,52 +1,43 @@
- import { STORAGE_KEYS } from './constants';
- 
- // Token save karo browser mein
- export const saveToken = (token) => {
-    localStorage.setItem(STORAGE_KEYS.TOKEN, token);
- };
-
- // Token retrieve karo browser se
+// Get token from localStorage
 export const getToken = () => {
   const token = localStorage.getItem('token');
   console.log('📦 Getting token:', token ? 'Token exists' : 'No token');
   return token;
 };
 
+// Set token to localStorage
 export const setToken = (token) => {
   console.log('💾 Saving token to localStorage');
   localStorage.setItem('token', token);
 };
 
-// Token delete karo (Logout ke time)
+// Remove token from localStorage
 export const removeToken = () => {
   console.log('🗑️ Removing token');
   localStorage.removeItem('token');
 };
-// User data save karo (Object hai toh JSON string mein convert karo)
-export const saveUser = (user) => {
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user));
-};
 
-// User data get karo (String se Object mein convert karo)
+// Get user from localStorage
 export const getUser = () => {
-  const user = localStorage.getItem('user');
-  return user ? JSON.parse(user) : null;
+  const userStr = localStorage.getItem('user');
+  return userStr ? JSON.parse(userStr) : null;
 };
 
+// Set user to localStorage
 export const setUser = (user) => {
   console.log('💾 Saving user to localStorage');
   localStorage.setItem('user', JSON.stringify(user));
 };
 
-// User data delete karo
+// Remove user from localStorage
 export const removeUser = () => {
+  console.log('🗑️ Removing user');
   localStorage.removeItem('user');
 };
 
-// Clear all
+// Clear all auth data
 export const clearAuth = () => {
   removeToken();
   removeUser();
+  console.log('🧹 Cleared all auth data');
 };
-
-
