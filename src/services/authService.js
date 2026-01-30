@@ -1,9 +1,16 @@
 // src/services/authService.js
 
-const API_URL = 'http://localhost:5000/api/auth'; // Update with your backend URL
+// ✅ BULLETPROOF: Direct assignment, no complex expressions
+const API_BASE_URL = 'https://togglenestbackend.vercel.app/api';
+const API_URL = `${API_BASE_URL}/auth`;
+
+console.log('🔗 Auth Service API URL:', API_URL);
 
 export const register = async (userData) => {
   try {
+    console.log('📤 Registering user:', userData.email);
+    console.log('🌐 Request URL:', `${API_URL}/register`);
+    
     const response = await fetch(`${API_URL}/register`, {
       method: 'POST',
       headers: {
@@ -13,6 +20,7 @@ export const register = async (userData) => {
     });
 
     const data = await response.json();
+    console.log('📥 Register response:', data);
 
     if (!response.ok) {
       throw new Error(data.message || data.error || 'Registration failed');
@@ -20,12 +28,16 @@ export const register = async (userData) => {
 
     return data;
   } catch (error) {
+    console.error('❌ Register error:', error);
     throw error;
   }
 };
 
 export const login = async (credentials) => {
   try {
+    console.log('📤 Logging in:', credentials.email);
+    console.log('🌐 Request URL:', `${API_URL}/login`);
+    
     const response = await fetch(`${API_URL}/login`, {
       method: 'POST',
       headers: {
@@ -35,18 +47,15 @@ export const login = async (credentials) => {
     });
 
     const data = await response.json();
+    console.log('📥 Login response:', data);
 
     if (!response.ok) {
       throw new Error(data.message || data.error || 'Login failed');
     }
 
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-    }
-
     return data;
   } catch (error) {
+    console.error('❌ Login error:', error);
     throw error;
   }
 };
@@ -54,6 +63,7 @@ export const login = async (credentials) => {
 export const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
+  console.log('👋 User logged out');
 };
 
 export const getCurrentUser = () => {
