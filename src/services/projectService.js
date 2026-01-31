@@ -1,6 +1,6 @@
 import { api } from './api';
 
-// Get all projects
+
 export const getProjects = async () => {
   try {
     return await api.get('/projects');
@@ -10,7 +10,6 @@ export const getProjects = async () => {
   }
 };
 
-// Get single project by ID
 export const getProjectById = async (id) => {
   try {
     return await api.get(`/projects/${id}`);
@@ -20,7 +19,6 @@ export const getProjectById = async (id) => {
   }
 };
 
-// Create new project
 export const createProject = async (projectData) => {
   try {
     return await api.post('/projects', projectData);
@@ -30,7 +28,6 @@ export const createProject = async (projectData) => {
   }
 };
 
-// Update project
 export const updateProject = async (id, projectData) => {
   try {
     return await api.put(`/projects/${id}`, projectData);
@@ -40,7 +37,6 @@ export const updateProject = async (id, projectData) => {
   }
 };
 
-// Delete project
 export const deleteProject = async (id) => {
   try {
     return await api.delete(`/projects/${id}`);
