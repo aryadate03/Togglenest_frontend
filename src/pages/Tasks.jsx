@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TaskList from '../components/tasks/TaskList';
 import TaskFilters from '../components/tasks/TaskFilters';
-import taskService from '../services/taskService';
-import projectService from '../services/projectService';
+import * as projectService from '../services/projectService';  // ✅ Fixed path
+import * as taskService from '../services/taskService'; 
 import '../styles/Tasks.css';
 
 const Tasks = () => {
@@ -36,7 +36,7 @@ const Tasks = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await taskService.getAllTasks();
+      const response = await taskService.getTasks();
       
       console.log('✅ Raw Tasks from API:', response.data);
       
@@ -72,7 +72,7 @@ const Tasks = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await projectService.getAllProjects();
+      const response = await projectService.getProjects();
       if (response.success && response.data) {
         setProjects(response.data);
         
