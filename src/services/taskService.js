@@ -1,6 +1,5 @@
 import { api } from './api';
 
-// Get all tasks (optionally filtered by project)
 export const getTasks = async (projectId = null) => {
   try {
     const endpoint = projectId ? `/tasks?project=${projectId}` : '/tasks';
@@ -11,7 +10,6 @@ export const getTasks = async (projectId = null) => {
   }
 };
 
-// Get single task by ID
 export const getTaskById = async (id) => {
   try {
     return await api.get(`/tasks/${id}`);
@@ -21,7 +19,6 @@ export const getTaskById = async (id) => {
   }
 };
 
-// Create new task
 export const createTask = async (taskData) => {
   try {
     return await api.post('/tasks', taskData);
@@ -31,7 +28,6 @@ export const createTask = async (taskData) => {
   }
 };
 
-// Update task
 export const updateTask = async (id, taskData) => {
   try {
     return await api.put(`/tasks/${id}`, taskData);
@@ -41,7 +37,6 @@ export const updateTask = async (id, taskData) => {
   }
 };
 
-// Update task status
 export const updateTaskStatus = async (id, status) => {
   try {
     return await api.patch(`/tasks/${id}`, { status });
@@ -51,7 +46,6 @@ export const updateTaskStatus = async (id, status) => {
   }
 };
 
-// Delete task
 export const deleteTask = async (id) => {
   try {
     return await api.delete(`/tasks/${id}`);
