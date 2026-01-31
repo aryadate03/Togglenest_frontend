@@ -11,7 +11,8 @@ import {
 import { arrayMove, SortableContext, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import taskService from '../services/taskService';
+import * as projectService from '../services/projectService';  // ✅ Fixed path
+import * as taskService from '../services/taskService'; 
 import '../styles/Kanban.css';
 
 // Sortable Task Card Component
@@ -129,7 +130,7 @@ const Kanban = () => {
   const fetchTasks = async () => {
     try {
       setLoading(true);
-      const response = await taskService.getAllTasks();
+      const response = await taskService.getTasks();
       console.log('✅ Kanban - Fetched tasks:', response.data);
       setTasks(response.data);
     } catch (error) {
