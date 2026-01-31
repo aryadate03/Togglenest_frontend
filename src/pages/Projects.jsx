@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Projects.css';
-import projectService from '../services/projectService';
-import taskService from '../services/taskService';
+import * as projectService from '../services/projectService';  // ✅ Fixed path
+import * as taskService from '../services/taskService';  
 
 const ProjectList = ({ projects, onCreateNew, onEditProject, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -406,7 +406,7 @@ const Projects = () => {
   const fetchProjectsFromDB = async () => {
     try {
       console.log('🔄 Fetching projects from MongoDB...');
-      const response = await projectService.getAllProjects();
+      const response = await projectService.getProjects();
       console.log('📦 MongoDB Response:', response);
 
       if (response.success && response.data && response.data.length > 0) {
@@ -449,7 +449,7 @@ const Projects = () => {
         return;
       }
 
-      // Don't send members array if empty, backend expects ObjectIds
+      
       const backendData = {
         title: formData.name,
         description: formData.description,
@@ -458,10 +458,9 @@ const Projects = () => {
         status: 'active'
       };
 
-      // Only add members if there are any (backend needs to handle member registration separately)
+      
       if (formData.teamMembers && formData.teamMembers.length > 0) {
-        // Backend expects array of User ObjectIds, not objects
-        // For now, we'll skip members in project creation
+        
         console.log('⚠️ Team members will need to be added separately:', formData.teamMembers);
       }
 
